@@ -8,3 +8,4 @@ test message
 5. Файлы переопределения
 6. Не проверенные
 new line
+test IDE
