@@ -1,0 +1,21 @@
+1. Полный хэш aefead2207ef7e2aa5dc81a34aedf0cad4c32545 . Комментарий Update CHANGELOG.md . Результат был получен командой git show aefea
+2. Хэш 85024d3 соответствует тегу v0.12.23 . Результат был получен через git show 85024d3
+3. У коммита b8d720 два радителя с хэшами 56cd7859e0 и 9ea88f22fc . Результат был получен через git show -s --format=%p b8d720
+4. Хэши и комментарии между тегами v0.12.23 и v0.12.24:
+b14b74c493 [Website] vmc provider links
+3f235065b9 Update CHANGELOG.md
+6ae64e247b registry: Fix panic when server is unreachable
+5c619ca1ba website: Remove links to the getting started guide's old location
+06275647e2 Update CHANGELOG.md
+d5f9411f51 command: Fix bug when using terraform login on Windows
+4b6d06cc5d Update CHANGELOG.md
+dd01a35078 Update CHANGELOG.md
+225466bc3e Cleanup after v0.12.23 release
+Результат был получен через - git log v0.12.23..v0.12.24 --oneline
+5. Коммит в котором была определена функция providerSource - 5af1e6234ab6da412fb8637393c5a17a1b293663.
+Найден был через команды git grep "func providerSource" и git log -L :providerSource:provider_source.go
+6. Коммиты, в которых была изменена функция globalPluginDirs:
+78b12205587fe839f10d946ea3fdc06719decb05
+52dbf94834cb970b510f2fba853a5b49ad9b1a46
+Выполнена через команды: git grep "globalPluginDirs" (определение где функция), git log -L :globalPluginDirs:plugins.go (вывод коммитов по истории)
+7. Функции synchronizedWriters в репозитории terraform нет. Через поиск git grep "synchronizedWriters", git grep "func synchronizedWriters", git grep --break --heading -c -e 'synchronizedWriters' не находит
