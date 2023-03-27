@@ -32,6 +32,10 @@
 `[[ -d /tmp ]]` - проверяет существование каталога /tmp и возвращает статус 0, если существует и 1 если нет.
 
 9. 
+- mkdir /tmp/new_path_directory/
+- cp /bin/bash /tmp/new_path_directory/
+- PATH=/tmp/new_path_directory/:$PATH
+- export PATH
 
 10. 
 - Команда at используется для назначения одноразового задания на заданное время.
