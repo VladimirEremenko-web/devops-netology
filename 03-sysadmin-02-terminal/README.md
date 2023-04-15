@@ -70,6 +70,52 @@ drwxr-xr-x 3 root    root       4096 Mar 14 21:57 ..
 
 `echo "Hello tty2" > /dev/tty2`
 
-![Скриншот](https://prnt.sc/-PCkWfP-m6mS)
+![Скриншот](/03-sysadmin-02-terminal/images/Screenshot.jpg)
+
+### 7. Выполните команду bash 5>&1. К чему она приведёт? Что будет, если вы выполните echo netology > /proc/$$/fd/5? Почему так происходит?
+
+`bash 5>&1`  запускает экземпляр bash с fd 5 и перенаправит его на fd 1 (stdout).
+
+`echo netology > /proc/$$/fd/5` выводит в терминал слово "netology". Это происходит потому что echo отправляет netology в fd 5 текущего шелла, подсистема /proc содержит информацию о запущенных процессах по их PID, $$ - подставит PID текущего шелла
+
+### 8. Получится ли в качестве входного потока для pipe использовать только stderr команды, не потеряв отображение stdout на pty?
+
+`cat ~/.bashrc pppsdfqvb 2>&1 1>/dev/pts/0 | sed 's/cat/test/g' > test;`
+
+### 9. Что выведет команда cat /proc/$$/environ? Как ещё можно получить аналогичный по содержанию вывод?
+
+Команда выведет список переменных окружения со значениями, альтернативный вариант `env`
+
+### 10. Используя man, опишите, что доступно по адресам /proc/<PID>/cmdline, /proc/<PID>/exe.
+
+`/proc/[pid]/cmdline` содержит командную строку и аргументы процесса
+
+`/proc/<PID>/exe` это симлинк на полный путь к исполняемому файлу из которого вызвана программа c пидом
+
+### 11. Узнайте, какую наиболее старшую версию набора инструкций SSE поддерживает ваш процессор с помощью /proc/cpuinfo.
+
+Версия 4_2
+
+```
+vagrant@vagrant:~$ grep sse /proc/cpuinfo
+flags         : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 cx16 pcid
+sse4_1 sse4_2 x2apic popcnt aes xsave avx rdrand hypervisor lahf_lm pti fsgsbase md_clear flush_l1d
+flags           : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 cx16 pcid
+sse4_1 sse4_2 x2apic popcnt aes xsave avx rdrand hypervisor lahf_lm pti fsgsbase md_clear flush_l1d
+vagrant@vagrant:~$ 
+```
+
+### 12. При открытии нового окна терминала и vagrant ssh создаётся новая сессия и выделяется pty.Это можно подтвердить командой tty, которая упоминалась в лекции 3.2.
+
+Это сделано для правильной работы в скриптах. Если сразу выполнить команду на удалённом сервере через ssh. Sshd и запускаемые команды это поймут, поэтому они не будут спрашивать что-то у пользователя, а вывод очистят от лишних данных.
+Исправить можно с помощью ключа -T при вызове ssh
+
+### 13. Бывает, что есть необходимость переместить запущенный процесс из одной сессии в другую. Попробуйте сделать это, воспользовавшись reptyr. Например, так можно перенести в screen процесс, который вы запустили по ошибке в обычной SSH-сессии.
+
+Работает, помогла инструкция https://github.com/nelhage/reptyr#typical-usage-pattern
+
+### 14. sudo echo string > /root/new_file не даст выполнить перенаправление под обычным пользователем, так как перенаправлением занимается процесс shell, который запущен без sudo под вашим пользователем. Для решения этой проблемы можно использовать конструкцию echo string | sudo tee /root/new_file. Узнайте, что делает команда tee и почему в отличие от sudo echo команда с sudo tee будет работать.
+
+Команда tee делает вывод одновременно и в файл, указанный в качестве параметра, и в stdout. В данном примере команда получает вывод из stdin, перенаправленный через pipe от stdout команды echo и т.к. команда запущена от sudo, соответственно имеет повышенные права на запись.
 
 
