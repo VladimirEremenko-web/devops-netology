@@ -37,29 +37,28 @@
 
 ### 5. Получится ли одновременно передать команде файл на stdin и вывести её stdout в другой файл? Приведите работающий пример.
 
-`ls -alt | tee output.txt`
+`sort <texttest.txt >sort.texttest`
 
 ```
-vagrant@vagrant:~$ ls -alt | tee output.txt
-total 2808
-drwxr-xr-x 6 vagrant vagrant 2797568 Apr 10 20:31 .
--rw-rw-r-- 1 vagrant vagrant       0 Apr 10 20:31 output.txt
-drwx------ 3 vagrant vagrant    4096 Apr 10 19:09 .config
--rw------- 1 vagrant vagrant     198 Apr 10 19:08 .lesshst
--rw------- 1 vagrant vagrant    1967 Apr 10 19:01 .viminfo
--rw-rw-r-- 1 vagrant vagrant      16 Apr 10 19:01 {1..100000.txt}
--rw------- 1 vagrant vagrant    1055 Mar 30 16:42 .bash_history
-drwxrwxr-x 3 vagrant vagrant    4096 Mar 26 20:56 .local
--rw-r--r-- 1 vagrant vagrant   12484 Mar 26 14:14 sf
-drwx------ 2 vagrant vagrant    4096 Mar 23 20:15 .ssh
--rw-r--r-- 1 root    root        180 Mar 14 22:03 .wget-hsts
--rw-r--r-- 1 vagrant vagrant       0 Mar 14 21:58 .sudo_as_admin_successful
--rw-r--r-- 1 vagrant vagrant       5 Mar 14 21:58 .vbox_version
-drwx------ 2 vagrant vagrant    4096 Mar 14 21:58 .cache
-drwxr-xr-x 3 root    root       4096 Mar 14 21:57 ..
--rw-r--r-- 1 vagrant vagrant     220 Feb 25  2020 .bash_logout
--rw-r--r-- 1 vagrant vagrant    3771 Feb 25  2020 .bashrc
--rw-r--r-- 1 vagrant vagrant     807 Feb 25  2020 .profile
+vagrant@vagrant:~$ touch texttest.txt
+vagrant@vagrant:~$ ls
+ {1..100000.txt}  ''$'\033''dsf'   output.txt   sort.output   test   texttest.txt
+vagrant@vagrant:~$ cat
+^C
+vagrant@vagrant:~$ cat texttest.txt
+vagrant@vagrant:~$ vim texttest.txt
+vagrant@vagrant:~$ sort <texttest.txt >sort.texttest
+vagrant@vagrant:~$ ls
+ {1..100000.txt}  ''$'\033''dsf'   output.txt   sort.output   sort.texttest   test   texttest.txt
+vagrant@vagrant:~$ cat sort.texttest
+1
+2
+3
+4
+5
+67
+8
+vagrant@vagrant:~$
 ```
 
 ---
@@ -80,7 +79,7 @@ drwxr-xr-x 3 root    root       4096 Mar 14 21:57 ..
 
 ### 8. Получится ли в качестве входного потока для pipe использовать только stderr команды, не потеряв отображение stdout на pty?
 
-`cat ~/.bashrc pppsdfqvb 2>&1 1>/dev/pts/0 | sed 's/cat/test/g' > test;`
+`echo "Hello" 3>&1 1>&2 2>&3 3>&-`
 
 ### 9. Что выведет команда cat /proc/$$/environ? Как ещё можно получить аналогичный по содержанию вывод?
 
