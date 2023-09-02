@@ -53,6 +53,6 @@
 
 8. Объясните, почему при этом не был удалён docker-образ nginx:latest. Ответ подкрепите выдержкой из документации провайдера docker.
 
-Он не был удалён, потому что мы использовали уже ранее скаченный image и просто переименовали имя контейнера.
-
-`Resource (docker_image)Pulls a Docker image to a given Docker host from a Docker Registry. This resource will not pull new layers of the image automatically unless used in conjunction with docker_registry_image data source to update the pull_triggers field`
+В файле конфигурации main.tf в определении ресурса docker_image установлен параметр keep_locally=true, который не даёт удалить образ при удалении ресурсов.
+Выдержка из документации:
+`keep_locally (Boolean) If true, then the Docker image won't be deleted on destroy operation. If this is false, it will delete the image from the docker local storage on destroy operation`
