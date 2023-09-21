@@ -18,5 +18,10 @@
 
 ![Скриншот](./images/ssh%20connect%20ubuntu.jpg)
 
-## Задание 2
+## Задание 4
 
+1. Объявите в файле outputs.tf output типа map, содержащий { instance_name = external_ip } для каждой из ВМ.
+Примените изменения.
+2. В качестве решения приложите вывод значений ip-адресов команды terraform output.
+
+![Скриншот](./images/output.jpg)
