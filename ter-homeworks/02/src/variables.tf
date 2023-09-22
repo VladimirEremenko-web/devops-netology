@@ -49,6 +49,6 @@ variable "project" {
 }
 
 variable "role" {
-   default    = ["web", "db"]
+  default     = ["web", "db"]
 }
 

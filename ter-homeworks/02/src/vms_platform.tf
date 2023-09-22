@@ -4,7 +4,6 @@ variable "vm_web_family_name" {
   default     = "ubuntu-2004-lts"
   description = "version OS"
 }
-###BM 1
 
 variable "vm_web_platform_id" {
   type        = string
@@ -12,17 +11,13 @@ variable "vm_web_platform_id" {
   description = "platfom version"
 }
 
-
-###BM 2
-
 variable "vm_db_platform_id" {
   type        = string
   default     = "standard-v3"
   description = "platfom version"
 }
 
-
-variable "resources_db" {
+variable "vm_db_resource" {
   type = map
   default  = {
     cores  = 2
@@ -31,7 +26,7 @@ variable "resources_db" {
   }
 }
 
-variable "resources_web" {
+variable "vm_web_resource" {
   type = map
   default  = {
     cores  = 2
