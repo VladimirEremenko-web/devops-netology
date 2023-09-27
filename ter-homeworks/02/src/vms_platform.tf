@@ -11,12 +11,6 @@ variable "vm_web_platform_id" {
   description = "platfom version"
 }
 
-variable "vm_db_platform_id" {
-  type        = string
-  default     = "standard-v3"
-  description = "platfom version"
-}
-
 variable "vm_db_resource" {
   type = map
   default  = {
@@ -33,4 +27,19 @@ variable "vm_web_resource" {
     memory = 1
     core_fraction = 20
   }
+}
+
+variable "env" {
+  type        = string
+  default     = "develop"
+}
+
+variable "project" {
+  type = string
+  default     = "platform"
+}
+
+variable "role" {
+  type = list(string)
+  default     = ["web", "db"]
 }

@@ -12,7 +12,8 @@ resource "yandex_vpc_subnet" "develop" {
 data "yandex_compute_image" "ubuntu" {
   family = var.vm_web_family_name
 }
-resource "yandex_compute_instance" "platform1" {
+
+resource "yandex_compute_instance" "web" {
   name        = local.platform1
   platform_id = var.vm_web_platform_id
   resources {
@@ -40,9 +41,9 @@ resource "yandex_compute_instance" "platform1" {
 
 }
 
-resource "yandex_compute_instance" "platform2" {
+resource "yandex_compute_instance" "db" {
   name        = local.platform2
-  platform_id = var.vm_db_platform_id
+  platform_id = var.vm_web_platform_id
   resources {
     cores         = var.vm_db_resource["cores"]
     memory        = var.vm_db_resource["memory"]

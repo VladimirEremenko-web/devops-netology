@@ -39,16 +39,3 @@ variable "vms_ssh_root_key" {
   default     = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCxVfgHVEdJEIJgWSU0ljvQuZ5DTRHGZ9GSH5qLHoZ4378GoqfgVhjQlrMWeXNLiSHicA8G9wNlqbTcfd65RlG1VvEb9Gpj3p1vgH+gQ/+Bq8x12zcZZz7+hb30+fq3BLEsXCum2AWXb6ox9Fi7qaUiBHkocbTBFOoQl771t2BgU4yZWfet2I2SVK3HRIXqPoVoBMRbRKHlmid8HAoppeswcrbfjcpq3RPk8SkiciPeuIAU1htPfaUiHgAg0hK2GvPm4JCbodcj2yMBYjFmJWFEvGP6p9691XMn0o34AfJ4H9hw+CGTK+kiMulevAkndewy90cMuZslJ3K+b9dMaumcwfEhksY6xbFb4SX/HwS7DF38Mzawq1AHAYj9qQg3C484K77EewdW0OW8joEdsRyGfF2O3JkTL3C5TvbeaK8IhZZB9+nk66lb/TarT6SlpfmSaN0XpjSMnmxJVW3h1hfooeZmewiWS5MwRqqVy3OV4kCfFD55eqFFlOiMbS8lqCM= lanc1k@lanc1k-VirtualBox"
   description = "ssh-keygen -t ed25519"
 }
-
-variable "env" {
-  default     = "develop"
-}
-
-variable "project" {
-  default     = "platform"
-}
-
-variable "role" {
-  default     = ["web", "db"]
-}
-
