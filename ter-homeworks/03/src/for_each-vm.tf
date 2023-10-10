@@ -8,18 +8,15 @@ resource "yandex_compute_instance" "forech_bm" {
     memory        = each.value.memory
     core_fraction = each.value.core_fraction
   }
-
   boot_disk {
     initialize_params {
-      image_id = "fd8tcjmhffpii4v6m09d"
+      image_id = var.boot_images
     }
   }
-
   network_interface {
     subnet_id = yandex_vpc_subnet.develop.id
     nat       = true
   }
-
   metadata = {
     ssh-keys = local.ssh
   }

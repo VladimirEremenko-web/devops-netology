@@ -11,7 +11,7 @@ locals {
       core_fraction = 20
     }
   }
-  #ssh = "ubuntu:${file("~/.ssh/id_ed25519.pub")}"
+  vm_storage_name = "storage"
 }
 
 locals {
