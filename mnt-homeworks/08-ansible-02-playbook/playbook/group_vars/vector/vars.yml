@@ -1,0 +1,37 @@
+---
+## General
+# Version
+vector_version: 0.35.0-1
+
+# Yam package
+vector_package_name: https://packages.timber.io/vector/latest/vector-{{ vector_version }}.x86_64.rpm
+
+# Set true to force the download and installation of the package
+vector_force_reinstall: false
+
+# Paths
+vector_bin_path: "/usr/bin"
+vector_skeleton_paths:
+  - "{{ vector_bin_path }}"
+vector_exec_name: vector
+
+## Service options
+# Documentation
+vector_documentation_link: https://vector.dev/docs/about/what-is-vector/
+
+# Owner
+vector_user: vector
+vector_group: vector
+
+# Start on boot
+vector_service_enabled: True
+# Current state: started, stopped
+vector_service_state: started
+
+# Logs
+vector_log_output: journal
+
+vector_config_template_path: "vector.toml.j2"
+vector_service_template_path: "vector.service.j2"
+
+vector_data_dir: "/var/lib/vector"
