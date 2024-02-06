@@ -1,0 +1,15 @@
+---
+lickhouse_packages:
+  - clickhouse-client
+  - clickhouse-server
+  - clickhouse-common-static
+clickhouse_database_name: logs
+clickhouse_create_table: |
+  CREATE TABLE
+  log (
+    appname String, 
+    hostname String,
+    message String, 
+    timestamp DateTime64
+    )
+  ENGINE = Log;

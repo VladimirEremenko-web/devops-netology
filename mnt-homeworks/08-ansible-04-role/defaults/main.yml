@@ -1,0 +1,7 @@
+---
+clickhouse_version: "22.12.6.22"
+cickhouse_users_custom:
+  lanc1k:
+    password: lanc1k
+    networks:
+      - 51.250.3.202
