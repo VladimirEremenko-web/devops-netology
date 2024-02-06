@@ -1,0 +1,10 @@
+---
+# Version
+vector_version: 0.35.0-1
+
+# Yam package
+vector_package_name: https://packages.timber.io/vector/latest/vector-{{ vector_version }}.x86_64.rpm
+
+# Owner
+vector_user: vector
+vector_group: vector

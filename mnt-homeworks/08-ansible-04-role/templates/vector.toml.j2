@@ -1,0 +1,36 @@
+#                                    __   __  __
+#                                    \ \ / / / /
+#                                     \ V / / /
+#                                      \_/  \/
+#
+#                                    V E C T O R
+#                                   Configuration
+#
+# ------------------------------------------------------------------------------
+# Website: https://vector.dev
+# Docs: https://vector.dev/docs/
+# ------------------------------------------------------------------------------
+
+# Note: A full config spec is located at ./vector.spec.toml and examples
+#       in the ./examples folder.
+
+data_dir = "{{ vector_data_dir }}"
+
+# Input data. Change me to a valid input source.
+[sources.logs_file]
+  type         = "file"
+  include      = ["/home/vector/logs/*.logs"]    # supports globbing
+  ignore_older = 86400                           # 1 day
+
+# Output data
+[sinks.to_clickhouse]
+  inputs   = ["logs_file"]
+  type     = "clickhouse"
+  database = "logs"
+  endpoint = "http://51.250.3.202:8123"
+  table    = "log"
+  compression = gzip
+  skip_unknown_fields = true
+  auth.user = "lanc1k"
+  auth.password = "lanc1k"
+  auth.strategy = "basic"

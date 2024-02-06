@@ -1,0 +1,25 @@
+---
+# Set true to force the download and installation of the package
+vector_force_reinstall: false
+
+# Paths
+vector_bin_path: "/usr/bin"
+vector_skeleton_paths:
+  - "{{ vector_bin_path }}"
+vector_exec_name: vector
+
+# Documentation
+vector_documentation_link: https://vector.dev/docs/about/what-is-vector/
+
+# Start on boot
+vector_service_enabled: True
+# Current state: started, stopped
+vector_service_state: started
+
+# Logs
+vector_log_output: journal
+
+vector_config_template_path: "vector.toml.j2"
+vector_service_template_path: "vector.service.j2"
+
+vector_data_dir: "/var/lib/vector"
