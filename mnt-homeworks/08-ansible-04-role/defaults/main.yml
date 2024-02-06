@@ -1,0 +1,5 @@
+---
+lighthouse_data: "/home/usert/lighthouse/"
+lighthouse_nginx_port: 8080
+lighthouse_nginx_conf: "lighthouse.conf"
+nginx_user: www-data
