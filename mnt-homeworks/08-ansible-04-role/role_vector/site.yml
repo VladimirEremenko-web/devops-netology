@@ -1,0 +1,5 @@
+---
+- name: Install Install vector
+  hosts: vector
+  roles:
+    - role_vector
