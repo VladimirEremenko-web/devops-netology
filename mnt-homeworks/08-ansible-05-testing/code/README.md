@@ -1,10 +1,8 @@
-Role Name
-=========
+# Role Name
 
 Роль для установки Vector
 
-Example Playbook
-----------------
+## Example Playbook
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
@@ -12,14 +10,10 @@ Including an example of how to use your role (for instance, with variables passe
       roles:
          - vector-role
 
-License
--------
+## License
 
 MIT
 
-Author Information
-------------------
+## Author Information
 
-Baldin Aleksey
-
-Netology
+Vladimir Eremenko

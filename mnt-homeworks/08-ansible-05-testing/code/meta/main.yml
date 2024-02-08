@@ -1,7 +1,7 @@
 galaxy_info:
   role_name: vector
-  namespace: alexeysetevoi
-  author: Baldin Aleksey
+  namespace: vladimirer
+  author: Vladimir Eremenko
   description: Install Vector
   company: OOO
 
@@ -12,12 +12,12 @@ galaxy_info:
   platforms:
     - name: CentOS
       versions:
-      - 8
+        - 8
     - name: Ubuntu
       versions:
-      - bionic
+        - bionic
 
-  galaxy_tags: 
+  galaxy_tags:
     - vector
 
-dependencies: []  
+dependencies: []
