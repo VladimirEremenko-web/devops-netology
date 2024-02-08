@@ -587,4 +587,145 @@ INFO     Pruning extra files from scenario ephemeral directory
 
 6. Добавьте новый тег на коммит с рабочим сценарием в соответствии с семантическим версионированием.
 
-[Link](https://github.com/VladimirEremenko-web/devops-netology/releases/tag/v1.0.0)
+[Link](https://github.com/VladimirEremenko-web/devops-netology/releases/tag/v1.0.1)
+
+## Tox
+
+1. Добавьте в директорию с vector-role файлы из [директории](./example).
+2. Запустите `docker run --privileged=True -v <path_to_repo>:/opt/vector-role -w /opt/vector-role -it aragast/netology:latest /bin/bash`, где path_to_repo — путь до корня репозитория с vector-role на вашей файловой системе.
+3. Внутри контейнера выполните команду `tox`, посмотрите на вывод.
+
+</details>
+
+<details><summary>Вывод</summary>
+
+```console
+lanc1k@lanc1k-VirtualBox:~/lessons/netolessondz/ansible-homeworks/mnt-homeworks/08-ansible-05-testing/homework$ docker run --privileged=True -v /home/lanc1k/lessons/netolessondz/ansible-homeworks/mnt-homeworks/08-ansible-05-testing/homework:/opt/vector -w /opt/vector -it aragast/netology:latest /bin/bash
+[root@48ce8a07f545 vector]# tox
+py37-ansible210 installed: ansible==2.10.7,ansible-base==2.10.17,ansible-compat==1.0.0,ansible-lint==5.1.3,arrow==1.2.3,bcrypt==4.0.1,binaryornot==0.4.4,bracex==2.3.post1,cached-property==1.5.2,Cerberus==1.3.5,certifi==2023.7.22,cffi==1.15.1,chardet==5.2.0,charset-normalizer==3.3.2,click==8.1.7,click-help-colors==0.9.2,cookiecutter==2.4.0,cryptography==41.0.5,distro==1.8.0,enrich==1.2.7,idna==3.4,importlib-metadata==6.7.0,Jinja2==3.1.2,jmespath==1.0.1,lxml==4.9.3,markdown-it-py==2.2.0,MarkupSafe==2.1.3,mdurl==0.1.2,molecule==3.5.2,molecule-podman==1.1.0,packaging==23.2,paramiko==2.12.0,pathspec==0.11.2,pluggy==1.2.0,pycparser==2.21,Pygments==2.16.1,PyNaCl==1.5.0,python-dateutil==2.8.2,python-slugify==8.0.1,PyYAML==5.4.1,requests==2.31.0,rich==13.6.0,ruamel.yaml==0.18.5,ruamel.yaml.clib==0.2.8,selinux==0.2.1,six==1.16.0,subprocess-tee==0.3.5,tenacity==8.2.3,text-unidecode==1.3,typing_extensions==4.7.1,urllib3==2.0.7,wcmatch==8.4.1,yamllint==1.26.3,zipp==3.15.0
+py37-ansible210 run-test-pre: PYTHONHASHSEED='835614274'
+py37-ansible210 run-test: commands[0] | molecule test -s compatibility --destroy always
+ERROR: InvocationError for command /opt/vector/.tox/py37-ansible210/bin/molecule test -s compatibility --destroy always (exited with code 2)
+py37-ansible30 installed: ansible==3.0.0,ansible-base==2.10.17,ansible-compat==1.0.0,ansible-lint==5.1.3,arrow==1.2.3,bcrypt==4.0.1,binaryornot==0.4.4,bracex==2.3.post1,cached-property==1.5.2,Cerberus==1.3.5,certifi==2023.7.22,cffi==1.15.1,chardet==5.2.0,charset-normalizer==3.3.2,click==8.1.7,click-help-colors==0.9.2,cookiecutter==2.4.0,cryptography==41.0.5,distro==1.8.0,enrich==1.2.7,idna==3.4,importlib-metadata==6.7.0,Jinja2==3.1.2,jmespath==1.0.1,lxml==4.9.3,markdown-it-py==2.2.0,MarkupSafe==2.1.3,mdurl==0.1.2,molecule==3.5.2,molecule-podman==1.1.0,packaging==23.2,paramiko==2.12.0,pathspec==0.11.2,pluggy==1.2.0,pycparser==2.21,Pygments==2.16.1,PyNaCl==1.5.0,python-dateutil==2.8.2,python-slugify==8.0.1,PyYAML==5.4.1,requests==2.31.0,rich==13.6.0,ruamel.yaml==0.18.5,ruamel.yaml.clib==0.2.8,selinux==0.2.1,six==1.16.0,subprocess-tee==0.3.5,tenacity==8.2.3,text-unidecode==1.3,typing_extensions==4.7.1,urllib3==2.0.7,wcmatch==8.4.1,yamllint==1.26.3,zipp==3.15.0
+py37-ansible30 run-test-pre: PYTHONHASHSEED='835614274'
+py37-ansible30 run-test: commands[0] | molecule test -s compatibility --destroy always
+ERROR: InvocationError for command /opt/vector/.tox/py37-ansible30/bin/molecule test -s compatibility --destroy always (exited with code 2)
+py39-ansible210 create: /opt/vector/.tox/py39-ansible210
+py39-ansible210 installdeps: -rtox-requirements.txt, ansible<3.0
+^CERROR: got KeyboardInterrupt signal
+___________________________________________________________________________________________________ summary ___________________________________________________________________________________________________
+ERROR:   py37-ansible210: commands failed
+ERROR:   py37-ansible30: commands failed
+ERROR:   py39-ansible210: keyboardinterrupt
+ERROR:   py39-ansible30: undefined
+```
+</details>
+
+4. Создайте облегчённый сценарий для `molecule` с драйвером `molecule_podman`. Проверьте его на исполнимость.
+
+```yaml
+scenario:
+  test_sequence:
+  - destroy
+  - create
+  - converge
+  - destroy
+
+```
+
+5. Пропишите правильную команду в `tox.ini`, чтобы запускался облегчённый сценарий.
+
+```yaml
+commands =
+    {posargs:molecule test -s podman --destroy always}
+
+```
+6. Запустите команду `tox`. Убедитесь, что всё отработало успешно.
+
+</details>
+
+<details><summary>Ошибка при выполнении таски [get podman executable path]</summary>
+
+```console
+
+TASK [get podman executable path] **********************************************
+task path: /home/lanc1k/.local/lib/python3.7/site-packages/molecule_podman/playbooks/create.yml:11
+File lookup using /home/lanc1k/.cache/molecule/vector/podman/molecule.yml as file
+<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: lanc1k
+<127.0.0.1> EXEC /bin/sh -c 'echo ~lanc1k && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /home/lanc1k/.ansible/tmp `"&& mkdir "` echo /home/lanc1k/.ansible/tmp/ansible-tmp-1699647517.28208-258454-7988385037713 `" && echo ansible-tmp-1699647517.28208-258454-7988385037713="` echo /home/lanc1k/.ansible/tmp/ansible-tmp-1699647517.28208-258454-7988385037713 `" ) && sleep 0'
+Including module_utils file ansible/__init__.py
+Including module_utils file ansible/module_utils/__init__.py
+Including module_utils file ansible/module_utils/_text.py
+Including module_utils file ansible/module_utils/basic.py
+Including module_utils file ansible/module_utils/common/_collections_compat.py
+Including module_utils file ansible/module_utils/common/__init__.py
+Including module_utils file ansible/module_utils/common/_json_compat.py
+Including module_utils file ansible/module_utils/common/_utils.py
+Including module_utils file ansible/module_utils/common/arg_spec.py
+Including module_utils file ansible/module_utils/common/collections.py
+Including module_utils file ansible/module_utils/common/file.py
+Including module_utils file ansible/module_utils/common/parameters.py
+Including module_utils file ansible/module_utils/common/process.py
+Including module_utils file ansible/module_utils/common/sys_info.py
+Including module_utils file ansible/module_utils/common/text/converters.py
+Including module_utils file ansible/module_utils/common/text/__init__.py
+Including module_utils file ansible/module_utils/common/text/formatters.py
+Including module_utils file ansible/module_utils/common/validation.py
+Including module_utils file ansible/module_utils/common/warnings.py
+Including module_utils file ansible/module_utils/compat/selectors.py
+Including module_utils file ansible/module_utils/compat/__init__.py
+Including module_utils file ansible/module_utils/compat/_selectors2.py
+Including module_utils file ansible/module_utils/compat/selinux.py
+Including module_utils file ansible/module_utils/distro/__init__.py
+Including module_utils file ansible/module_utils/distro/_distro.py
+Including module_utils file ansible/module_utils/errors.py
+Including module_utils file ansible/module_utils/parsing/convert_bool.py
+Including module_utils file ansible/module_utils/parsing/__init__.py
+Including module_utils file ansible/module_utils/pycompat24.py
+Including module_utils file ansible/module_utils/six/__init__.py
+Using module file /home/lanc1k/.local/lib/python3.7/site-packages/ansible/modules/command.py
+<127.0.0.1> PUT /home/lanc1k/.ansible/tmp/ansible-local-258440au46afb9/tmptyvjgkx3 TO /home/lanc1k/.ansible/tmp/ansible-tmp-1699647517.28208-258454-7988385037713/AnsiballZ_command.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /home/lanc1k/.ansible/tmp/ansible-tmp-1699647517.28208-258454-7988385037713/ /home/lanc1k/.ansible/tmp/ansible-tmp-1699647517.28208-258454-7988385037713/AnsiballZ_command.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3 /home/lanc1k/.ansible/tmp/ansible-tmp-1699647517.28208-258454-7988385037713/AnsiballZ_command.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /home/lanc1k/.ansible/tmp/ansible-tmp-1699647517.28208-258454-7988385037713/ > /dev/null 2>&1 && sleep 0'
+fatal: [localhost]: FAILED! => {
+    "changed": false,
+    "cmd": [
+        "which",
+        "podman"
+    ],
+    "delta": "0:00:00.004364",
+    "end": "2023-11-10 23:18:38.068947",
+    "invocation": {
+        "module_args": {
+            "_raw_params": "which podman",
+            "_uses_shell": false,
+            "argv": null,
+            "chdir": null,
+            "creates": null,
+            "executable": null,
+            "removes": null,
+            "stdin": null,
+            "stdin_add_newline": true,
+            "strip_empty_ends": true,
+            "warn": false
+        }
+    },
+    "msg": "non-zero return code",
+    "rc": 1,
+    "start": "2023-11-10 23:18:38.064583",
+    "stderr": "",
+    "stderr_lines": [],
+    "stdout": "",
+    "stdout_lines": []
+}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
+
+```
+
+</details>
+
+7. Добавьте новый тег на коммит с рабочим сценарием в соответствии с семантическим версионированием.
