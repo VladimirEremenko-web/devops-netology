@@ -314,6 +314,7 @@ INFO     Pruning extra files from scenario ephemeral directory
 
 <details><summary>Повторил тест</summary>
 
+```console
 lanc1k@lanc1k-VirtualBox:~/lessons/netolessondz/ansible-homeworks/mnt-homeworks/08-ansible-05-testing/homework$ sudo molecule test
 INFO     default scenario test matrix: dependency, lint, cleanup, destroy, syntax, create, prepare, converge, idempotence, side_effect, verify, cleanup, destroy
 INFO     Performing prerun...
@@ -581,7 +582,7 @@ PLAY RECAP *********************************************************************
 localhost                  : ok=2    changed=2    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
 
 INFO     Pruning extra files from scenario ephemeral directory
-
+```
 </details>
 
 6. Добавьте новый тег на коммит с рабочим сценарием в соответствии с семантическим версионированием.
