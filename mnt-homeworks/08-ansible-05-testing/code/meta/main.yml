@@ -1,0 +1,23 @@
+galaxy_info:
+  role_name: vector
+  namespace: alexeysetevoi
+  author: Baldin Aleksey
+  description: Install Vector
+  company: OOO
+
+  license: license MIT
+
+  min_ansible_version: 2.9
+
+  platforms:
+    - name: CentOS
+      versions:
+      - 8
+    - name: Ubuntu
+      versions:
+      - bionic
+
+  galaxy_tags: 
+    - vector
+
+dependencies: []  
