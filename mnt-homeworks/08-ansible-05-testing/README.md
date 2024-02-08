@@ -731,3 +731,4 @@ localhost                  : ok=0    changed=0    unreachable=0    failed=1    s
 7. Добавьте новый тег на коммит с рабочим сценарием в соответствии с семантическим версионированием.
 
 [Link](https://github.com/VladimirEremenko-web/devops-netology/releases/tag/v1.0.2)
+<a href="https://github.com/VladimirEremenko-web/devops-netology/releases/tag/v1.0.2" target="_blank">Link</a>
