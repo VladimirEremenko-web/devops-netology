@@ -125,3 +125,6 @@ Nginx
 ![Скриншот](./images/nginx_nodeport.jpg)
 Multitool
 ![Скриншот](./images/multitool_nodeport.jpg)
+
+-----
+Манифесты размещены в [каталоге](https://github.com/VladimirEremenko-web/devops-netology/tree/main/kuber-homeworks/1-4/config).
