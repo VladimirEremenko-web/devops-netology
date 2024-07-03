@@ -140,3 +140,6 @@ spec:
 ![Скриншот](./images/curl_domain_front.jpg)
 
 ![Скриншот](./images/curl_domain_back.jpg)
+
+-----
+Манифесты размещены в [каталоге](https://github.com/VladimirEremenko-web/devops-netology/tree/main/kuber-homeworks/1-5/configs).
