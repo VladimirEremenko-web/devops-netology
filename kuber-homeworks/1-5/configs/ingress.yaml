@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: check-ingress
+  namespace: netology-5
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: lancik.ru
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: dpl-svc
+                port:
+                  number: 9001
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: dpl-svc
+                port:
+                  number: 9002
