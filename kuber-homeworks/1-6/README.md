@@ -59,6 +59,40 @@ spec:
 
 ![Скрин](./images/create%20dpl.jpg)
 
+```yaml
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: ds
+  namespace: netology-6
+spec:
+  selector:
+    matchLabels:
+      name: ds
+  template:
+    metadata:
+      labels:
+        name: ds
+    spec:
+      containers:
+        - name: multitool
+          image: wbitt/network-multitool
+          volumeMounts:
+            - name: newdir
+              mountPath: /microk8slogs/syslog
+              subPath: syslog
+            - name: varlog
+              mountPath: /var/log/syslog
+              readOnly: true
+      volumes:
+        - name: newdir
+          hostPath:
+            path: /var/log
+        - name: varlog
+          hostPath:
+            path: /var/log
+```
+
 2. Проверяю чтение файла из нутри пода.
 
 ![Скрин](./images/check%20logs%20ds%20task2.jpg)
