@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: multik
+  namespace: netology-7
+  labels:
+    app: multik
+spec:
+  selector:
+    matchLabels:
+      app: multik
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: multik
+    spec:
+      containers:
+        - name: multitool
+          image: wbitt/network-multitool
+          ports:
+            - containerPort: 8080
+          env:
+            - name: HTTP_PORT
+              value: "1180"
+          volumeMounts:
+            - name: nfs-storage
+              mountPath: "/data"
+      volumes:
+        - name: nfs-storage
+          persistentVolumeClaim:
+            claimName: nfs-pvc
