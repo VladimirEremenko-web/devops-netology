@@ -100,3 +100,6 @@ spec:
 Записанный файл на самой ноде через NFS
 
 ![sc](./images/nfs%20storage%20on%20node%20task2.jpg)
+
+-----
+Манифесты размещены в [каталоге](https://github.com/VladimirEremenko-web/devops-netology/tree/main/kuber-homeworks/1-7/configs)
