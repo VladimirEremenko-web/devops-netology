@@ -212,3 +212,6 @@ spec:
 
 ![csd](./images/curl%20to%20dns%20task2.jpg)
 
+-----
+
+Манифесты размещены в [каталоге](https://github.com/VladimirEremenko-web/devops-netology/tree/main/kuber-homeworks/1-8/configs)
