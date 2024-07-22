@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-maps
+  namespace: netology-8
+data:
+  index.html: |
+    <html>
+    <h1>Hey Hetology!</h1>
+    </br>
+    <h1>Test custom page with Nginx</h1>
+    </html>
