@@ -110,3 +110,7 @@ roleRef:
 Описание выводится, права работают.
 
 P.s. Сертификаты не прикладываю, кластер постоянный.
+
+-----
+
+Манифесты размещены в [каталоге](https://github.com/VladimirEremenko-web/devops-netology/tree/main/kuber-homeworks/1-9/configs)
