@@ -34,3 +34,7 @@
 ![as](./images/check%20soft%20in%20browser.jpg)
 
 Приложение доступно в браузере. Установка приложения с помощью Helm успешно завершена.
+
+----
+
+Манифесты размещены в [каталоге](https://github.com/VladimirEremenko-web/devops-netology/tree/main/kuber-homeworks/1-10/configs/test-chart)
