@@ -53,17 +53,17 @@ resource "yandex_storage_bucket" "eremenko" {
   acl        = "public-read"
 }
 ```
-За текущую дату в названии бакета будет отвечать локальная переменная current_timestamp в формате "день-месяц-год" и моя фамилия:
+За текущую дату в названии бакета будет отвечать локальная переменная `current_timestamp` в формате "день-месяц-год" и моя фамилия:
 
 ```
 locals {
     current_timestamp = timestamp()
     formatted_date = formatdate("DD-MM-YYYY", local.current_timestamp)
-    bucket_name = "fedorchukds-${local.formatted_date}"
+    bucket_name = "eremenko-${local.formatted_date}"
 }
 ```
 
-Код создания bucket в файле bucket.tf
+Код создания bucket в файле [bucket.tf](https://github.com/VladimirEremenko-web/devops-netology/blob/main/clopro-homeworks/02/src/bucket.tf)
 
 Загружу в бакет файл с картинкой:
 
@@ -72,18 +72,18 @@ resource "yandex_storage_object" "picture" {
   access_key = yandex_iam_service_account_static_access_key.sa-static-key.access_key
   secret_key = yandex_iam_service_account_static_access_key.sa-static-key.secret_key
   bucket     = local.bucket_name
-  key        = "picture.jpeg"
-  source     = "~/picture.jpeg"
+  key        = "picture.jpg"
+  source     = "~/picture.jpg"
   acl        = "public-read"
   depends_on = [yandex_storage_bucket.eremenko]
 }
 ```
 
-Источником картинки будет файл, лежащий в моей домашней директории, за публичность картинки будет отвечать параметр acl = "public-read".
+Источником картинки будет файл, лежащий в моей домашней директории, за публичность картинки будет отвечать параметр `acl = "public-read"`.
 
-Код Terraform для загрузки картинки можно посмотреть в файле upload_image.tf
+Код Terraform для загрузки картинки можно посмотреть в файле [upload_image.tf](https://github.com/VladimirEremenko-web/devops-netology/blob/main/clopro-homeworks/02/src/upload_image.tf)
 
-2. Создаю группу ВМ в public подсети фиксированного размера с шаблоном LAMP и веб-страницей, содержащей ссылку на картинку из бакета.
+2. Создаю группу ВМ в `public` подсети фиксированного размера с шаблоном LAMP и веб-страницей, содержащей ссылку на картинку из бакета.
 
 ```
 variable "default_cidr" {
@@ -116,15 +116,15 @@ resource "yandex_vpc_subnet" "public" {
 }
 ```
 
-За шаблон виртуальных машин с LAMP будет отвечать переменная в группе виртуальных машин image_id = "fd827b91d99psvq5fjit".
+За шаблон виртуальных машин с LAMP будет отвечать переменная в группе виртуальных машин `image_id = "fd827b91d99psvq5fjit"`.
 
-За создание стартовой веб-страницы будет отвечать параметр user_data в разделе metadata:
+За создание стартовой веб-страницы будет отвечать параметр `user_data` в разделе `metadata`:
 
 ```
 user-data  = <<EOF
 #!/bin/bash
 cd /var/www/html
-echo '<html><head><title>Picture of my cat</title></head> <body><h1>Look at my cat</h1><img src="http://${yandex_storage_bucket.fedorchukds.bucket_domain_name}/deadline-cat.jpg"/></body></html>' > index.html
+echo '<html><head><title>Rofl picture</title></head> <body><h1>Heh</h1><img src="http://${yandex_storage_bucket.eremenko.bucket_domain_name}/picture.jpg"/></body></html>' > index.html
 EOF
 ```
 
@@ -142,11 +142,11 @@ EOF
 
 Проверка здоровья будет выполняться каждые 30 секунд и будет считаться успешной, если подключение к порту 80 виртуальной машины происходит успешно в течении 10 секунд.
 
-Код для создания группы виртуальных машин можно посмотреть в файле group_vm.tf
+Код для создания группы виртуальных машин можно посмотреть в файле [group_vm.tf](https://github.com/VladimirEremenko-web/devops-netology/blob/main/clopro-homeworks/02/src/group_vm.tf)
 
-После применения кода Terraform получаем три настроенные по шаблону LAMP виртуальные машины:
+Получаем три настроенные по шаблону LAMP виртуальные машины:
 
-3. Создам сетевой балансировщик и подключу к нему группу виртуальных машин:
+3. Создам сетевой балансировщик и подключаем к нему группу виртуальных машин:
 
 ```
 resource "yandex_lb_network_load_balancer" "network-balancer" {
@@ -204,4 +204,8 @@ resource "yandex_lb_network_load_balancer" "network-balancer" {
 
 Через некоторое время благодаря срабатыванию Healthcheck виртуальные машины снова запустились, что обеспечивает нам высокую отказоустойчивость приложления.
 
-Код для создания сетевого балансировщика в файле network_load_balancer.tf
+Код для создания сетевого балансировщика в файле [network_load_balancer.tf](https://github.com/VladimirEremenko-web/devops-netology/blob/main/clopro-homeworks/02/src/network_load_balancer.tf)
+
+----
+
+Все манифесты размещены в [каталоге](https://github.com/VladimirEremenko-web/devops-netology/tree/main/clopro-homeworks/02/src)
