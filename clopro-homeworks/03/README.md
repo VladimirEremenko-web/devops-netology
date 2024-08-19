@@ -93,3 +93,6 @@ resource "yandex_kms_symmetric_key" "secret-key" {
 
 >Сайт доступен и защищён
 
+----
+
+Все манифесты размещены в [каталоге](https://github.com/VladimirEremenko-web/devops-netology/tree/main/clopro-homeworks/03/src)
