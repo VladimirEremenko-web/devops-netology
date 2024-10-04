@@ -47,7 +47,7 @@ jobs:
         terraform_version: "1.5.5"
 
     - name: Terraform Init
-      run: terraform -chdir=../../diplom/terraform/terraform init
+      run: terraform -chdir=../../diplom/terraform/ init
 
     - name: Terraform Format and Validate
       run: terraform -chdir=./terraform validate
