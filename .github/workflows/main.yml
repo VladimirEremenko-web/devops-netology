@@ -50,7 +50,7 @@ jobs:
       run: terraform -chdir=./diplom/terraform init
 
     - name: Terraform Format and Validate
-      run: terraform -chdir=./terraform validate
+      run: terraform -chdir=./diplom/terraform validate
 
     - name: Terraform Plan
       run: |
@@ -62,11 +62,11 @@ jobs:
 
     - name: Terraform Apply (Automatic Trigger)
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-      run: terraform -chdir=./terraform apply -input=false tfplan
+      run: terraform -chdir=./diplom/terraform apply -input=false tfplan
 
     - name: Terraform Apply (Manual Trigger)
       if: github.event_name == 'workflow_dispatch' && github.event.inputs.apply == 'true'
-      run: terraform -chdir=./terraform apply -input=false tfplan
+      run: terraform -chdir=./diplom/terraform apply -input=false tfplan
 
     - name: Terraform Destroy (Manual Trigger)
       if: github.event_name == 'workflow_dispatch' && github.event.inputs.destroy == 'true'
