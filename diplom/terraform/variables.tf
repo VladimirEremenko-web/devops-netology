@@ -76,7 +76,7 @@ variable "ssh_private_key" {
 variable "exclude_ansible" {
   description = "Флаг для исключения ansible.tf"
   type        = bool
-  default     = true
+  default     = false
 }
 
 
