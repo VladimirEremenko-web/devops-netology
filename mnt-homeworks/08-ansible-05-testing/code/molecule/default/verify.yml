@@ -1,0 +1,15 @@
+---
+- name: Verify
+  hosts: all
+  gather_facts: false
+  vars_files:
+    - "/home/nolar/ansible-venv/roles/vars/main.yml"
+  tasks:
+    - name: Example assertion
+      assert:
+        that: true
+    - name: Check config dir
+      assert:
+        that:
+          - vector_config_dir is string
+          - vector_config_dir == "/etc/vector"

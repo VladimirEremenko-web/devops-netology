@@ -1,0 +1,3 @@
+token     = "t1.9euelZqQkZ6UlpmMz5uMzsqSzo6Viu3rnpWals2YipWSk5fLxpjOl43Iicbl9Pc5fm5W-e8gDxK33fT3eSxsVvnvIA8St83n9euelZqWyJjOk86PlM2PlI2dzM6Pze_8zef1656VmsmbzJyMl8fKy8vIyM6PyM3M7_3F656VmpbImM6Tzo-UzY-UjZ3Mzo_N.woPSNj6GCP0l_9iUzmrBHm1djTh_gf4Mcs8O2Rh8mVs05dqo76AnoLl_4hrjlazVGNM-SEeXazgSUvAnDQSJCg"
+cloud_id  = "b1gm07vrob449htbkulp"
+folder_id = "b1gkrtsjm4s15n053hgm"

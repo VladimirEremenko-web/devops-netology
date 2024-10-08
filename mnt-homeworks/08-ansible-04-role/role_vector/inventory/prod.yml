@@ -1,0 +1,6 @@
+---
+vector:
+  hosts:
+    vector-01:
+      ansible_host: 158.160.118.186
+      ansible_user: centos

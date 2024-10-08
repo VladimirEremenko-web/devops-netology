@@ -1,0 +1,21 @@
+---
+clickhouse_version: "22.12.6.22"
+clickhouse_packages:
+  - clickhouse-client
+  - clickhouse-server
+  - clickhouse-common-static
+clickhouse_database_name: logs
+clickhouse_create_table: |
+  CREATE TABLE
+  log (
+    appname String, 
+    hostname String,
+    message String, 
+    timestamp DateTime64
+    )
+  ENGINE = Log;
+cickhouse_users_custom:
+  lanc1k:
+    password: lanc1k
+    networks:
+      - 51.250.3.202

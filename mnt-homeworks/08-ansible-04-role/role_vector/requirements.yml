@@ -1,0 +1,5 @@
+---
+- name: vector
+  src: git@github.com:VladimirEremenko-web/devops-netology.git
+  scm: git
+  version: role_vector
